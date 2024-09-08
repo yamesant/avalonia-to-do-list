@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using AvaloniaToDoList.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -69,5 +70,11 @@ public partial class MainViewModel : ViewModelBase
     {
         // Remove the given item from the list
         ToDoItems.Remove(item);
+    }
+    
+    [RelayCommand]
+    private void CompleteItem(ToDoItemViewModel item)
+    {
+        throw new NotImplementedException();
     }
 }
