@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Avalonia.Controls;
 using AvaloniaToDoList.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -12,20 +11,6 @@ namespace AvaloniaToDoList.ViewModels;
 /// </summary>
 public partial class MainViewModel : ViewModelBase
 {
-    public MainViewModel()
-    {
-        // We can use this to add some items for the designer. 
-        // You can also use a DesignTime-ViewModel
-        if (Design.IsDesignMode)
-        {
-            ToDoItems = new ObservableCollection<ToDoItemViewModel>(new[]
-            {
-                new ToDoItemViewModel() { Content = "Hello" },
-                new ToDoItemViewModel() { Content = "Avalonia", IsChecked = true}
-            });
-        }
-    }
-    
     /// <summary>
     /// Gets a collection of <see cref="ToDoItem"/> which allows adding and removing items
     /// </summary>
@@ -75,6 +60,12 @@ public partial class MainViewModel : ViewModelBase
     [RelayCommand]
     private void CompleteItem(ToDoItemViewModel item)
     {
-        throw new NotImplementedException();
+        if (item.Status is ToDoItemStatus.Completed)
+        {
+            return;
+        }
+
+        item.Status = ToDoItemStatus.Completed;
+        item.CompletionDateTime = DateTime.Now;
     }
 }

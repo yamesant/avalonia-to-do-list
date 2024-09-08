@@ -1,4 +1,5 @@
-﻿using AvaloniaToDoList.Models;
+﻿using System;
+using AvaloniaToDoList.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AvaloniaToDoList.ViewModels;
@@ -31,21 +32,9 @@ public partial class ToDoItemViewModel : ViewModelBase
     public ToDoItemViewModel(ToDoItem item)
     {
         // Init the properties with the given values
-        IsChecked = item.IsChecked;
         Content = item.Content;
-    }
-    
-    /// <summary>
-    /// Gets or sets the checked status of each item
-    /// </summary>
-    // NOTE: This property is made without source generator. Uncomment the line below to use the source generator
-    // [ObservableProperty] 
-    private bool _isChecked;
-
-    public bool IsChecked
-    {
-        get { return _isChecked; }
-        set { SetProperty(ref _isChecked, value); }
+        CompletionDateTime = item.CompletionDateTime;
+        Status = item.Status;
     }
     
     /// <summary>
@@ -53,6 +42,12 @@ public partial class ToDoItemViewModel : ViewModelBase
     /// </summary>
     [ObservableProperty] 
     private string? _content;
+
+    [ObservableProperty]
+    private DateTime? _completionDateTime;
+
+    [ObservableProperty]
+    private ToDoItemStatus _status;
     
     /// <summary>
     /// Gets a ToDoItem of this ViewModel
@@ -62,8 +57,9 @@ public partial class ToDoItemViewModel : ViewModelBase
     {
         return new ToDoItem()
         {
-            IsChecked = this.IsChecked,
-            Content = this.Content
+            Content = Content,
+            CompletionDateTime = CompletionDateTime,
+            Status = Status,
         };
     }
 }
