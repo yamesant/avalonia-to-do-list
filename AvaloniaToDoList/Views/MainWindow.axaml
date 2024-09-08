@@ -29,7 +29,7 @@
                     <ScrollViewer Grid.Row="0">
                         <!-- This ItemsControl show all added ToDoItems. -->
                         <!-- It needs to be placed inside a ScrollViewer because other than a ListBox it has not its own -->
-                        <ItemsControl ItemsSource="{Binding ToDoItems}">
+                        <ItemsControl ItemsSource="{Binding NewToDoItems}">
                             <ItemsControl.ItemTemplate>
                                 <!-- The ItemTemplate defines how each item should be represented -->
                                 <!-- Our Item will be represented by a CheckBox and a Delete-Button -->
@@ -79,6 +79,18 @@
             </TabItem>
             
             <TabItem Header="Completed Items">
+                <ScrollViewer>
+                    <ItemsControl ItemsSource="{Binding CompletedToDoItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="vm:ToDoItemViewModel">
+                                <Grid ColumnDefinitions="Auto, *">
+                                    <TextBlock Grid.Column="0" Text="{Binding CompletionDateTime}"/>
+                                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Text="{Binding Content}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </TabItem>
             
         </TabControl>

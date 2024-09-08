@@ -1,8 +1,10 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using AvaloniaToDoList.Models;
 using AvaloniaToDoList.Services;
 using AvaloniaToDoList.ViewModels;
 using AvaloniaToDoList.Views;
@@ -51,7 +53,8 @@ public partial class App : Application
         if (!_canClose)
         {
             // To save the items, we map them to the ToDoItem-Model which is better suited for I/O operations
-            var itemsToSave = _mainViewModel.ToDoItems.Select(item => item.GetToDoItem());
+            var itemsToSave = _mainViewModel.NewToDoItems.Select(item => item.GetToDoItem())
+                .Concat(_mainViewModel.CompletedToDoItems.Select(item => item.GetToDoItem()));
             
             await ToDoListFileService.SaveToFileAsync(itemsToSave);
             
@@ -74,7 +77,17 @@ public partial class App : Application
         {
             foreach (var item in itemsLoaded)
             {
-                _mainViewModel.ToDoItems.Add(new ToDoItemViewModel(item));
+                switch (item.Status)
+                {
+                    case ToDoItemStatus.New:
+                        _mainViewModel.NewToDoItems.Add(new ToDoItemViewModel(item));
+                        break;
+                    case ToDoItemStatus.Completed:
+                        _mainViewModel.CompletedToDoItems.Add(new ToDoItemViewModel(item));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
     }

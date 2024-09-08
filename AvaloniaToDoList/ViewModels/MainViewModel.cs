@@ -11,12 +11,9 @@ namespace AvaloniaToDoList.ViewModels;
 /// </summary>
 public partial class MainViewModel : ViewModelBase
 {
-    /// <summary>
-    /// Gets a collection of <see cref="ToDoItem"/> which allows adding and removing items
-    /// </summary>
-    public ObservableCollection<ToDoItemViewModel> ToDoItems { get; } = new ObservableCollection<ToDoItemViewModel>();
+    public ObservableCollection<ToDoItemViewModel> NewToDoItems { get; } = [];
+    public ObservableCollection<ToDoItemViewModel> CompletedToDoItems { get; } = [];
 
-    
     // -- Adding new Items --
     
     /// <summary>
@@ -26,7 +23,7 @@ public partial class MainViewModel : ViewModelBase
     private void AddItem()
     {
         // Add a new item to the list
-        ToDoItems.Add(new ToDoItemViewModel() {Content = NewItemContent});
+        NewToDoItems.Add(new ToDoItemViewModel() { Content = NewItemContent });
         
         // reset the NewItemContent
         NewItemContent = null;
@@ -54,7 +51,7 @@ public partial class MainViewModel : ViewModelBase
     private void RemoveItem(ToDoItemViewModel item)
     {
         // Remove the given item from the list
-        ToDoItems.Remove(item);
+        NewToDoItems.Remove(item);
     }
     
     [RelayCommand]
@@ -67,5 +64,8 @@ public partial class MainViewModel : ViewModelBase
 
         item.Status = ToDoItemStatus.Completed;
         item.CompletionDateTime = DateTime.Now;
+
+        NewToDoItems.Remove(item);
+        CompletedToDoItems.Insert(0, item);
     }
 }
