@@ -1,9 +1,6 @@
-using System.Linq;
 using Avalonia.Controls;
-using SimpleToDoList.Services;
-using SimpleToDoList.ViewModels;
 
-namespace SimpleToDoList.Views;
+namespace AvaloniaToDoList.Views;
 
 public partial class MainWindow : Window
 {

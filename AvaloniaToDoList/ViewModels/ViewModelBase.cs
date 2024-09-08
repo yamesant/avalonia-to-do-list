@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace SimpleToDoList.ViewModels;
+namespace AvaloniaToDoList.ViewModels;
 
 /*   NOTE:
  *

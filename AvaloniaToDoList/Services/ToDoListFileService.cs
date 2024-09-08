@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
-using SimpleToDoList.Models;
+using AvaloniaToDoList.Models;
 
-namespace SimpleToDoList.Services;
+namespace AvaloniaToDoList.Services;
 
 /// <summary>
 /// This class provides the needed functions to save and restore a ToDoList. This step is fully optional for this tutorial
@@ -16,7 +16,7 @@ public static class ToDoListFileService
     // want to make this configurable
     private static string _jsonFileName = 
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-        "Avalonia.SimpleToDoList", "MyToDoList.txt");
+        "AvaloniaToDoList", "MyToDoList.txt");
 
     /// <summary>
     /// Stores the given items into a file on disc

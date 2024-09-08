@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using SimpleToDoList.Services;
-using SimpleToDoList.ViewModels;
-using SimpleToDoList.Views;
+using AvaloniaToDoList.Services;
+using AvaloniaToDoList.ViewModels;
+using AvaloniaToDoList.Views;
 
-namespace SimpleToDoList;
+namespace AvaloniaToDoList;
 
 public partial class App : Application
 {

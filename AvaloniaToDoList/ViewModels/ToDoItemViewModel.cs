@@ -1,7 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using SimpleToDoList.Models;
+﻿using AvaloniaToDoList.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace SimpleToDoList.ViewModels;
+namespace AvaloniaToDoList.ViewModels;
 
 /*   NOTE:
  *
